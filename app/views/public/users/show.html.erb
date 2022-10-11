@@ -7,8 +7,14 @@
     <div class="col-9">
       <%= @user.name %>
       <div>
-      <%= link_to "編集する", edit_user_path(@user) %>
+        <%= link_to "編集する", edit_user_path(@user) %>
       </div>
+
+      <% if @user == current_user %>
+        <div>
+          <%= link_to "退会する", unsubscribe_path(@user) %>
+        </div>
+      <% end %>
     </div>
 
 

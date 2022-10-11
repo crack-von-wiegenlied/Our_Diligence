@@ -15,6 +15,16 @@
         </li>
       </ul>
 
+    <% elsif admin_signed_in? %>
+      <ul class="navbar-nav ml-auto m-3">
+        <li class="nav-item m-1">
+          <%= link_to "会員一覧", admin_users_path, class:"text-white" %>
+        </li>
+        <li class="nav-item m-1">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-white" %>
+        </li>
+      </ul>
+
     <% else %>
       <ul class="navbar-nav ml-auto m-3">
         <li class="nav-item m-1">

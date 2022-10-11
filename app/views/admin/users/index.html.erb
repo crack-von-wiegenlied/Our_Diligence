@@ -1,0 +1,11 @@
+<h2>会員一覧</h2>
+<% @users.each do |user| %>
+<table>
+  <td>
+    <%= link_to admin_user_path(user.id) do %>
+      <%= user.name %>
+    <% end %>
+  </td>
+  <td><%= user.is_deleted %></td>
+</table>
+<% end %>
