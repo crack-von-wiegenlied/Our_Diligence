@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index]
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+    resources :posts
+    resources :categories
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
