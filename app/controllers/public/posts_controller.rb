@@ -6,15 +6,13 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if params[:post][:category_select] == "2"
-      category = Category.new
+      category = Category.new(category_params)
+      category.save
       @post.category_id = category.id
-      category.save!
     end
     @post.user_id = current_user.id
-    @post.save!
+    @post.save
     redirect_to post_path(@post)
-
-
   end
 
   def index
@@ -23,6 +21,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -32,6 +31,10 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:category_id, :title, :body, :work_time, :start_time)
+  end
+
+  def category_params
+    params.require(:category).permit(:name)
   end
 
 

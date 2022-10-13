@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>カテゴリー名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.name %></td>
+          <td><%= link_to "編集する", edit_admin_category_path(category.id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

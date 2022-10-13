@@ -3,9 +3,11 @@
     <div class="col-3">
       <p>サイドバー</p>
       <%= link_to "新規投稿", new_post_path %>
+      <%= link_to "みんなの投稿", posts_path %>
     </div>
 
     <div class="col-9">
+      <%= image_tag @user.get_image(50, 50) %>
       <%= @user.name %>
       <div>
         <%= link_to "編集する", edit_user_path(@user) %>

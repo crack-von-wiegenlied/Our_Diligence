@@ -1,5 +1,30 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
-
-<%= @post.title %>
-<%= @post.category_id %>
+<div class="container">
+    <h1 class="text-center p-3"><%= @post.title %></h1>
+  <div>
+    <div class="text-right"><%= @post.start_time.year%>年<%= @post.start_time.month%>月<%= @post.start_time.day%>日</div>
+    <p class="text-right"><%= @post.user.name %></p>
+    <div class="row">
+      <div class="col-7">
+        <p>時間数： <%= @post.work_time %>時間</p>
+        <p>カテゴリー： <%= @post.category.name %></p>
+      </div>
+      <div class="col-5">
+        <p>コメント件数：<%= @post.comments.count %></p>
+      </div>
+    </div>
+    <p><%= @post.body %></p>
+  </div>
+  <div class="comment-field">
+    <% @post.comments.each do |comment| %>
+      <%= image_tag comment.user.get_image(50, 50) %>
+      <%= comment.user.name %>
+      <%= comment.comment %>
+    <% end %>
+  </div>
+  <div class="comment-form">
+    <%= form_with model: [@post, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: 'コメントを記入してください' %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+</div>

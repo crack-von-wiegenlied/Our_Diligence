@@ -8,7 +8,7 @@
       <div class="form-group">
         <label>カテゴリー</label>
 
-        <%= f.radio_button :category_select, 1 %>
+        <%= f.radio_button :category_select, 1, checked: true %>
         <%= f.label :category_id, "登録済みのカテゴリーから選択する" %>
         <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
 

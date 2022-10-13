@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index]
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-    resources :posts
-    resources :categories
+    resources :posts do
+      resources :comments, only: [:create, :edit, :update, :destroy]
+    end
+    resources :categories, only: [:create]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
+    resources :categories, only: [:index, :edit, :update]
     root to: 'users#index'
   end
 
