@@ -14,16 +14,32 @@
     </div>
     <p><%= @post.body %></p>
   </div>
+    <h5>みんなのコメント</h5>
   <div class="comment-field">
-    <% @post.comments.each do |comment| %>
-      <%= image_tag comment.user.get_image(50, 50) %>
-      <%= comment.user.name %>
-      <%= comment.comment %>
-    <% end %>
+
+    <% if @post.comments.present? %>
+      <div class="row py-3">
+        <% @post.comments.each do |comment| %>
+        <div class="col-3 py-3 pl-5">
+          <%= image_tag comment.user.get_image(50, 50) %>
+          <%= comment.user.name %>
+          <% if comment.user == current_user %>
+            <%= link_to "削除する", post_comment_path(comment.post, comment), method: :delete, class:"ml-1" %>
+          <% end %>
+        </div>
+        <div class="col-9 py-3">
+          <%= comment.comment %>
+        </div>
+        <% end %>
+
+      <% else %>
+        <p class="py-3 ml-5">コメントはまだありません</p>
+      <% end %>
+    </div>
   </div>
-  <div class="comment-form">
+  <div class="comment-form form-group">
     <%= form_with model: [@post, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: 'コメントを記入してください' %>
+      <%= f.text_area :comment, placeholder: 'コメントを記入してください', class: 'form-control',size: "2x5" %>
       <%= f.submit "送信する" %>
     <% end %>
   </div>

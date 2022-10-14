@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :users, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, length: { maximum: 200 }
