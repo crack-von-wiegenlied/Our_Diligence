@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :categories, only: [:create]
+    get 'search' => 'searches#search'
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

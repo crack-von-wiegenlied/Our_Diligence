@@ -14,9 +14,11 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+
   validates :name, presence: true
   validates :introduction, length: { maximum: 200 }
 
+  #プロフィール画像
   has_one_attached :image
 
   def get_image(width, height)
@@ -27,18 +29,33 @@ class User < ApplicationRecord
     image.variant(resize_to_limit: [width,height]).processed
   end
 
+
+  #フォローする
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
-
+  #フォロー外す
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
   end
-
+  #フォローしているか確認する
   def following?(user)
     followings.include?(user)
   end
 
-
+  #検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where(["name like? OR introduction like?", "#{word}", "#{word}"])
+    elsif search == "forward_match"
+      @user = User.where(["name like? OR introduction like?", "#{word}%", "#{word}%"])
+    elsif search == "backward_match"
+      @user = User.where(["name like? OR introduction like?", "%#{word}", "%#{word}"])
+    elsif search == "partial_match"
+      @user = User.where(["name like? OR introduction like?", "%#{word}%", "%#{word}%"])
+    else
+      @user = User.all
+    end
+  end
 
 end
