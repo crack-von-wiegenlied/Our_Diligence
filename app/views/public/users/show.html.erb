@@ -41,6 +41,16 @@
         <% end %>
       <% end %>
 
+      <%= month_calendar(events: @user.posts) do |date, posts| %>
+        <%= date.day %>
+
+        <% posts.each do |post| %>
+          <div>
+            <%= post.title %>
+          </div>
+        <% end %>
+      <% end %>
+
       <% if (@user == current_user) && (@user.name != "guestuser") %>
         <div>
           <%= link_to "編集する", edit_user_path(@user) %>
