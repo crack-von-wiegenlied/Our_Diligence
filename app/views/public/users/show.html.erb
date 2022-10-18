@@ -1,4 +1,6 @@
+<!--ユーザー画面-->
 <div class="container-fluid">
+  <div><%= flash[:notice] %></div>
   <div class="row">
     <div class="col-3">
       <p>サイドバー</p>
@@ -39,7 +41,7 @@
         <% end %>
       <% end %>
 
-      <% if @user == current_user %>
+      <% if (@user == current_user) && (@user.name != "guestuser") %>
         <div>
           <%= link_to "編集する", edit_user_path(@user) %>
         </div>

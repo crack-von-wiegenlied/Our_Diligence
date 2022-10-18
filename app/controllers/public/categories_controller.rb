@@ -6,7 +6,6 @@ class Public::CategoriesController < ApplicationController
   end
 
   def show
-    #@categories = Category.all
     @category = Category.find(params[:category_id])
     @posts = @category.posts
   end
