@@ -1,0 +1,7 @@
+<!--カテゴリー検索結果-->
+<div class="container">
+  <h3>カテゴリー：<%= @category.name %>の投稿</h3>
+    <div>
+      <%= render 'public/posts/post_index', posts: @posts %>
+    </div>
+</div>

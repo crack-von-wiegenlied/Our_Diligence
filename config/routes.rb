@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :categories, only: [:create]
+    resources :categories, only: [:create, :show]
     get 'search' => 'searches#search'
   end
 

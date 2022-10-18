@@ -5,6 +5,12 @@ class Public::CategoriesController < ApplicationController
     category.save
   end
 
+  def show
+    #@categories = Category.all
+    @category = Category.find(params[:category_id])
+    @posts = @category.posts
+  end
+
 
   private
   def category_params
