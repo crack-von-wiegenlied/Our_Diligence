@@ -1,3 +1,32 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.simple-calendar {
+  .day {
+    background: #f1ffd1;
+  }
+  .wday-0 {
+    background: #ffeaea;
+  }
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {
+    background: #d4ebff;
+  }
+  .today {
+    background: #a8ffa8;
+  }
+  .past {}
+  .future {}
+  .start-date {}
+  .prev-month {}
+  .next-month {}
+  .current-month {}
+  .has-events {
+    filter: saturate(250%);
+  }
+}

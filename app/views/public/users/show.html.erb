@@ -3,7 +3,7 @@
   <div><%= flash[:notice] %></div>
   <div class="row">
     <div class="col-3">
-      <p>サイドバー</p>
+      <p class="sidebar">サイドバー</p>
       <%= link_to "新規投稿", new_post_path %>
       <%= link_to "みんなの投稿", posts_path %>
 
@@ -38,6 +38,18 @@
           <%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete %>
         <% else %>
           <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+        <% end %>
+      <% end %>
+
+      <%= month_calendar(events: @user.posts) do |date, posts| %>
+        <%= date.day %>
+
+        <% posts.each do |post| %>
+          <div>
+            <%= link_to post_path(post) do %>
+              <%= post.title %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
 
