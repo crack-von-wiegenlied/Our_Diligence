@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
 
   validates :name, presence: true
+  validates :name, length: { minimum: 2, maximum: 10 }
   validates :introduction, length: { maximum: 200 }
 
   #プロフィール画像
@@ -28,7 +29,7 @@ class User < ApplicationRecord
     end
     image.variant(resize_to_limit: [width,height]).processed
   end
-  
+
   def self.guest
     find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
