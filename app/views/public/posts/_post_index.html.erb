@@ -4,7 +4,8 @@
       <th>タイトル</th>
       <th>カテゴリー</th>
       <th>投稿者</th>
-      <th>日付</th>
+      <th>実施日</th>
+      <th>投稿日</th>
       <th></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <% end %>
       </td>
       <td><%= post.start_time.month %>/<%= post.start_time.day %></td>
+      <td><%= post.created_at.month %>/<%= post.created_at.day %></td>
 
       <% if post.favorited_by?(current_user) %>
         <td>

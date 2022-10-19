@@ -3,7 +3,7 @@
   <div><%= flash[:notice] %></div>
   <div class="row">
     <div class="col-3">
-      <p>サイドバー</p>
+      <p class="sidebar">サイドバー</p>
       <%= link_to "新規投稿", new_post_path %>
       <%= link_to "みんなの投稿", posts_path %>
 
@@ -46,7 +46,9 @@
 
         <% posts.each do |post| %>
           <div>
-            <%= post.title %>
+            <%= link_to post_path(post) do %>
+              <%= post.title %>
+            <% end %>
           </div>
         <% end %>
       <% end %>
