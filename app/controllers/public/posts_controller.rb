@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end
@@ -17,7 +18,11 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :DESC)
+  end
+
+  def timeline
+    @posts = Post.where(user_id: [current_user.id, current_user.followings.ids])
   end
 
   def show
