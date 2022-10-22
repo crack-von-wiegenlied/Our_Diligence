@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    get 'homes/about' => 'homes#about',as:'about'
+    get 'about' => 'homes#about',as:'about'
     resources :users do
       resources :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

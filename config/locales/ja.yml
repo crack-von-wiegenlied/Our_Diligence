@@ -1,4 +1,6 @@
 ja:
+  "true": 凍結中
+  "false": 有効会員
   simple_calendar:
     previous: "<<"
     next: ">>"
