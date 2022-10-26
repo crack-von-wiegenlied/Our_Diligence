@@ -1,0 +1,35 @@
+<div class="table-responsive">
+  <table class="table my-3">
+    <thead class="thead-light">
+      <tr>
+       <th class="text-nowrap">ユーザーネーム</th>
+       <th class="text-nowrap">自己紹介</th>
+       <th class="text-nowrap">フォロー数</th>
+       <th class="text-nowrap">フォロワー数</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(user) do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td><%= truncate(user.introduction, omission: "・・・") %></td>
+        <td>
+          <%= link_to  user_followings_path(user) do %>
+            <%= user.followings.count %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to  user_followers_path(user) do %>
+            <%= user.followers.count %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>

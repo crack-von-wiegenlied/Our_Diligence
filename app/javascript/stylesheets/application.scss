@@ -1,10 +1,13 @@
 
+
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .simple-calendar {
   .day {
     background: #f1ffd1;
+    height: 80px;
+    width: 14%;
   }
   .wday-0 {
     background: #ffeaea;

@@ -7,22 +7,18 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if params[:post][:category_select] == "2"
-      category = Category.new(category_params)
-      category.save
-      @post.category_id = category.id
-    end
     @post.user_id = current_user.id
     @post.save
     redirect_to post_path(@post)
   end
 
   def index
+    @user = current_user
     @posts = Post.order(created_at: :DESC)
   end
 
   def timeline
-    @posts = Post.where(user_id: [current_user.id, current_user.followings.ids])
+    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :DESC)
   end
 
   def show
@@ -37,12 +33,6 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    if params[:post][:category_select] == "2"
-      @category = Category.new(category_params)
-      @category.save
-      @post.category_id = @category.id
-    end
-    @post.save
     redirect_to post_path(@post)
   end
 

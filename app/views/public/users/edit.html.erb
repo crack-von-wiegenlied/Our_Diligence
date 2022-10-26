@@ -1,24 +1,32 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="sol-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>会員情報編集</h2>
-      <%= form_with model: @user do |f| %>
-      <div class="form-group">
-        <label>Name</label>
-        <%= f.text_field :name, class:'form-control' %>
+    <div class="col-lg-9 col-sm-12">
+      <div class="sol-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>会員情報編集</h2>
+        <%= form_with model: @user do |f| %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, required: true, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <label>Image</label>
+          <%= f.file_field :image, accept: "image/*", class:'form-control-file' %>
+        </div>
+        <div class="form-group">
+          <label>Introduction</label>
+          <%= f.text_area :introduction, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "ユーザー情報を更新する", class:'btn btn-secondary' %>
+        </div>
+        <% end %>
       </div>
-      <div class="form-group">
-        <label>Image</label>
-        <%= f.file_field :image, accept: "image/*", class:'form-control-file' %>
-      </div>
-      <div class="form-group">
-        <label>Introduction</label>
-        <%= f.text_area :introduction, class:'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit "Update User", class:'btn btn-secondary' %>
-      </div>
-      <% end %>
+    </div>
+    <div class="col-lg-3 col-sm-12 mt-3">
+      <%= render 'public/shared/sidebar' %>
     </div>
   </div>
 </div>
+
+
+

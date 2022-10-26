@@ -1,5 +1,13 @@
-<div class="container">
-  <div>
-    <%= render 'post_index', posts: @posts %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-9 col-sm-12">
+      <h3 class="mt-3">みんなの投稿</h3>
+      <div>
+        <%= render 'public/posts/post_index', posts: @posts %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-sm-12 mt-3">
+      <%= render 'public/shared/sidebar' %>
+    </div>
   </div>
 </div>
