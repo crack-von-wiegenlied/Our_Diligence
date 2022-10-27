@@ -6,6 +6,10 @@
   <p><i class="fas fa-users"></i>フォロー中のユーザーの投稿</p>
 <% end %>
 
+<%= link_to user_favorites_path(current_user) do %>
+  <p><i class="fas fa-heart"></i>いいねした投稿</p>
+<% end %>
+
 <%= link_to posts_path do %>
   <p><i class="fas fa-globe"></i>みんなの投稿</p>
 <% end %>
@@ -33,11 +37,13 @@
   <% end %>
 </div>
 
-<div>
-  <%= link_to edit_user_path(current_user) do %>
-    <p class="mt-3"><i class="fas fa-user-cog"></i>プロフィールを編集する</p>
-  <% end %>
-</div>
+<% if current_user.name != "guestuser" %>
+  <div>
+    <%= link_to edit_user_path(current_user) do %>
+      <p class="mt-3"><i class="fas fa-user-cog"></i>プロフィールを編集する</p>
+    <% end %>
+  </div>
+<% end %>
 
 <div>
   <%= link_to new_opinion_path do %>

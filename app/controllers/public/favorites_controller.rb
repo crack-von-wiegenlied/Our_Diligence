@@ -15,4 +15,9 @@ class Public::FavoritesController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def index
+    favorites = Favorite.where(user_id: current_user.id).order(created_at: :DESC).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
 end
