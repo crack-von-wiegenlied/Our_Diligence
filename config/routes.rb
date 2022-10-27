@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, skip: [:passwords], controllers: {
+ devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :categories, only: [:show]
+    resources :opinions, only: [:new, :create, :index]
     get 'search' => 'searches#search'
   end
 
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :categories, only: [:create, :index, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :destroy]
+    get 'opinions' => 'opinions#index'
     root to: 'users#index'
   end
 
