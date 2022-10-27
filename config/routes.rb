@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :categories, only: [:create, :show]
+    resources :categories, only: [:show]
     get 'search' => 'searches#search'
   end
 
@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :categories, only: [:index, :edit, :update]
+    resources :categories, only: [:create, :index, :edit, :update, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
     root to: 'users#index'
   end
 

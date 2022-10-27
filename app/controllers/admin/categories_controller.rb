@@ -3,6 +3,18 @@ class Admin::CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:notice] = 'カテゴリーを追加しました'
+      redirect_to admin_categories_path
+    else
+      flash[:notice] = 'カテゴリー名を入力してください'
+      redirect_to admin_categories_path
+    end
   end
 
   def edit
@@ -16,6 +28,13 @@ class Admin::CategoriesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    flash[:notice] = 'カテゴリーを削除しました'
+    redirect_to admin_categories_path
   end
 
 
