@@ -7,6 +7,7 @@
 <div class="form-group">
   <label>カテゴリー</label>
   <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name,{selected: post.category_id}), class:'form-control' %>
+  <p>※該当のカテゴリーがない場合は<%= link_to "ご意見フォーム", new_opinion_path %>から追加希望を送ってください</p>
 </div>
 <div class="form-group">
   <label>本文</label>

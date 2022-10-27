@@ -26,6 +26,7 @@ class Admin::CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to admin_categories_path
     else
+      flash[:notice] = 'カテゴリー名を入力してください'
       render 'edit'
     end
   end
