@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
+  validates :work_time, presence: true
+  validates :start_time, presence: true
 
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)

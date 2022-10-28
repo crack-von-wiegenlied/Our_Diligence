@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <p id="notice"><%= notice %></p>
   <div class="row">
     <div class="col-lg-9 col-sm-12">
       <h3 class="mt-3">ご意見フォーム</h3>
@@ -10,7 +11,7 @@
           </div>
           <div class="form-group">
             <label>本文</label>
-            <%= f.text_area :body, required: true, class:'form-control', size: "1x5" %>
+            <%= f.text_area :body, required: true, maxlength: "200", class:'form-control', size: "1x4" %>
           </div>
           <%= f.submit "送信する", class:'btn btn-secondary' %>
         <% end %>
