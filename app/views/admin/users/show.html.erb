@@ -18,5 +18,7 @@
           <td></td>
         </tr>
       </table>
-    <%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success" %>
+    <% if @user.name != "guestuser" %>
+      <%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success" %>
+    <% end %>
 </div>
