@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
 
   validates :name, presence: true
-  validates :name, length: { minimum: 2, maximum: 10 }
+  validates :name, length: { minimum: 2, maximum: 15 }
   validates :introduction, length: { maximum: 200 }
 
   #プロフィール画像

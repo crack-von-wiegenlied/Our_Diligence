@@ -6,7 +6,7 @@
         <%= form_with model: @user do |f| %>
         <div class="form-group">
           <label>Name</label>
-          <%= f.text_field :name, required: true, class:'form-control' %>
+          <%= f.text_field :name, required: true, maxlength: "15", class:'form-control' %>
         </div>
         <div class="form-group">
           <label>Image</label>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <label>Introduction</label>
-          <%= f.text_area :introduction, class:'form-control' %>
+          <%= f.text_area :introduction, maxlength: "200", class:'form-control' %>
         </div>
         <div class="form-group">
           <%= f.submit "ユーザー情報を更新する", class:'btn btn-secondary' %>
