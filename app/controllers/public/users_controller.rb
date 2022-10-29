@@ -15,21 +15,20 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
+    user = User.find(params[:id])
+    if user.update(user_params)
+      redirect_to user_path(user.id)
     else
       render 'edit'
     end
   end
 
   def unsubscribe
-    @user = current_user
   end
 
   def withdraw
-    @user = current_user
-    @user.update(is_deleted: true)
+    user = current_user
+    user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました。ご利用ありがとうございました。"
     redirect_to root_path
