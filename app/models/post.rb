@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
+  validates :title, length: { maximum: 15 }
+  validates :body, length: { maximum: 200 }
   validates :work_time, presence: true
   validates :start_time, presence: true
 

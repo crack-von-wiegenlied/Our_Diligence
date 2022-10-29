@@ -58,7 +58,7 @@
         </div>
         <div class="comment-form form-group">
           <%= form_with model: [@post, @comment] do |f| %>
-            <%= f.text_area :comment, placeholder: 'コメントを記入してください', class: 'form-control',size: "2x5", required: true %>
+            <%= f.text_area :comment, placeholder: 'コメントを記入してください', class: 'form-control',size: "2x5", required: true, maxlength: "200" %>
             <%= f.submit "送信する" %>
           <% end %>
         </div>
