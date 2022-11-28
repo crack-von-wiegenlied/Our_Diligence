@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -59,5 +60,11 @@ class Public::PostsController < ApplicationController
     params.require(:category).permit(:name)
   end
 
+ #URL直打ちでの編集画面遷移禁止
+  def correct_user
+    @post = Post.find(params[:id])
+    user = @post.user
+    redirect_to post_path(@post) unless user == current_user
+  end
 
 end
