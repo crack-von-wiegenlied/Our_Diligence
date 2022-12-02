@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
+  before_action :check_user, only: [:edit, :update, :unsubscribe]
   before_action :ensure_guest_user, only: [:edit]
 
   def index
@@ -27,10 +27,11 @@ class Public::UsersController < ApplicationController
   def unsubscribe
   end
 
-  def withdraw
-    user = current_user
-    user.update(is_deleted: true)
-    reset_session
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    #user.update(is_deleted: true)
+    #reset_session
     flash[:notice] = "退会処理を実行いたしました。ご利用ありがとうございました。"
     redirect_to root_path
   end
@@ -49,7 +50,8 @@ class Public::UsersController < ApplicationController
       end
     end
 
-    def correct_user
+    #編集禁止用のbefore_action用メソッド
+    def check_user
       @user = User.find(params[:id])
       redirect_to user_path(@user) unless @user == current_user
     end

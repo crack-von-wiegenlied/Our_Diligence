@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       get 'favorites' => 'favorites#index', as: 'favorites'
     end
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+    #delete 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     get 'posts/timeline' => 'posts#timeline', as: 'timeline'
     resources :posts do
       resource :favorites, only: [:create, :destroy]
