@@ -10,10 +10,11 @@ class Public::OpinionsController < ApplicationController
   end
 
   def create
-    opinion = Opinion.new(opinion_params)
-    opinion.user_id = current_user.id
-    if opinion.save
+    @opinion = Opinion.new(opinion_params)
+    @opinion.user_id = current_user.id
+    if @opinion.save
       flash[:notice] = 'ご意見を送信しました'
+      OpinionMailer.with(opinion: @opinion).opinion_notice.deliver_now
       redirect_to opinions_path
     else
       render 'new'
